@@ -1,0 +1,41 @@
+## Create user for kubectl commands
+- name: Add kubeadmin User
+  user:
+    name: kubeadmin
+    shell: /bin/bash
+    password:
+- name: Add SSH key
+  authorized_key:
+    user: kubeadmin
+    key: "{{ lookup('file','~/.ssh/id_rsa.pub') }}"
+    state: present
+
+- name: create .kube dir
+  become: yes
+  become_user: kubeadmin
+  file:
+    path: $HOME/.kube
+    state: directory
+    mode: 0755
+
+- name: copy admin.conf to users kube config
+  copy:
+    src: /etc/kubernetes/admin.conf
+    dest: /home/kubeadmin/.kube/config
+    remote_src: yes
+    owner: kubeadmin
+
+- name: Calico Modified Source
+  become: yes
+  become_user: kubeadmin
+  copy:
+    src: ./files/calico.yml
+    dest: $HOME/calico.yml
+
+- name: install Pod Network
+  become: yes
+  become_user: kubeadmin
+  shell: kubectl apply -f "$HOME/calico.yml"  >> pod_network_setup.txt
+  args:
+    chdir: $HOME
+    creates: pod_network_setup.txt

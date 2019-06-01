@@ -1,0 +1,16 @@
+- name: Create service file Kubernetes Master posts
+  copy:
+    src: ./files/firewalld-ports-worker.xml
+    dest: /etc/firewalld/services/kubernetes-worker.xml
+    owner: root
+    mode: '0644'
+
+- name: Reload FirewallD
+  service: name=firewalld state=restarted
+
+- name: Create New FirewallD Service
+  firewalld:
+    service: kubernetes-worker
+    permanent: yes
+    state: enabled
+    immediate: yes

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<service>
+  <short>Kubernetes Worker Ports</short>
+  <description>Ports for Kubernetes Worker Node</description>
+  <port port="8443" protocol="tcp"/>
+  <port port="6783" protocol="tcp"/>
+  <port port="6783" protocol="udp"/>
+  <port port="6784" protocol="udp"/>
+  <port port="10250" protocol="tcp"/>
+  <port port="30000-32767" protocol="tcp"/>
+  <protocol value="esp"/>
+</service>
+

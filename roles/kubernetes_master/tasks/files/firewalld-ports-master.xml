@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<service>
+  <short>Kubernetes Master Ports</short>
+  <description>Ports for Kubernetes Master Node</description>
+  <port port="443" protocol="tcp"/>
+  <port port="8001" protocol="tcp"/>
+  <port port="6443" protocol="tcp"/>
+  <port port="6783" protocol="tcp"/>
+  <port port="6783" protocol="udp"/>
+  <port port="6784" protocol="udp"/>
+  <port port="2379-2380" protocol="tcp"/>
+  <port port="10250-10255" protocol="tcp"/>
+  <port port="30000-32767" protocol="tcp"/>
+  <protocol value="esp"/>
+</service>
+

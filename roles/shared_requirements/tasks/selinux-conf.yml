@@ -1,0 +1,12 @@
+
+
+- name: disable SElinux
+  command: setenforce 0
+  ignore_errors: True
+  when: ansible_selinux['mode'] is defined
+
+- name: disable SELinux on reboot
+  selinux:
+    state: disabled
+  when: ansible_selinux['status'] is defined
+

@@ -1,0 +1,13 @@
+---
+
+- hosts: master
+  become: yes
+  gather_facts: true
+  roles: 
+    - kubernetes_master
+
+- hosts: workers
+  become: yes
+  gather_facts: true
+  roles: 
+    - kubernetes_node

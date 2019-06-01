@@ -1,0 +1,29 @@
+- name: add Kubernetes YUM repository
+  yum_repository:
+    name: kubernetes
+    description: Kubernetes YUM Repo
+    baseurl: https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+    gpgkey: https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+    gpgcheck: yes
+
+- name: install kubelet
+  yum:
+    name: kubelet-1.14.0
+    state: present
+    update_cache: true
+
+- name: install kubeadm
+  yum: 
+    name: kubeadm-1.14.0
+    state: present
+    update_cache: true
+
+- name: Force reload of system
+  systemd:
+    daemon_reload: yes
+
+- name: start kubelet
+  service:
+    name: kubelet
+    enabled: yes
+    state: started

@@ -1,0 +1,4 @@
+---
+
+- import_tasks: firewalld_service.yml
+- import_tasks: join.yml

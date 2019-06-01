@@ -1,0 +1,7 @@
+---
+- import_tasks: packages.yml
+- import_tasks: disable_swap.yml
+- import_tasks: docker.yml
+- import_tasks: selinux-conf.yml
+- import_tasks: sysctl-conf.yml
+- import_tasks: kubernetes.yml

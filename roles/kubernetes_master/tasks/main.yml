@@ -1,0 +1,7 @@
+---
+
+- import_tasks: packages.yml
+- import_tasks: firewalld_service.yml
+- import_tasks: init_cluster.yml
+- import_tasks: kubeadmin.yml
+- import_tasks: kube-token.yml
